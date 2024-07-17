@@ -1,0 +1,12 @@
+.addProduct{
+   width: 300px;
+}
+
+.addProduct div.addProductInputs{
+   display: flex;
+   margin-bottom: 10px;
+}
+
+.addProduct div.addProductInputs div{
+   width: 200px;
+}

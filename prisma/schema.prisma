@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model bids {
+  id         Int      @id @default(autoincrement())
+  user_id    Int?
+  price      Decimal? @db.Money
+  comment    String?
+  status     String?  @db.VarChar(10)
+  listing_id Int?
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model listing {
+  id               Int      @id @default(autoincrement())
+  name             String
+  description      String?
+  price            Decimal? @db.Money
+  status           String?  @db.VarChar(10)
+  seller_id        Int?
+  purchase_user_id Int?
+  purchase_type    String?  @db.VarChar(10)
+  bid_id           Int?
+  date_create      DateTime @default(dbgenerated("CURRENT_DATE")) @db.Date
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model sellers {
+  id      Int  @id @default(autoincrement())
+  user_id Int?
+
+  @@ignore
+}
+
+model transaction_history {
+  id         Int  @id @default(autoincrement())
+  user_id    Int?
+  listing_id Int?
+}
+
+model user {
+  id   Int     @id @default(autoincrement())
+  name String?
+}
