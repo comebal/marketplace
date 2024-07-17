@@ -1,0 +1,20 @@
+.productList{
+   width: 300px;
+   margin-top: 20px;
+   margin-bottom: 20px;
+}
+
+.productList > div{
+   display: flex;
+   justify-content: space-between;
+   align-items: baseline;
+   margin-bottom: 10px;
+}
+
+.productList > div:last-child{
+   margin-bottom:0px;
+}
+
+.productList > div .buttons a:nth-child(1){
+   margin-right: 10px;
+}
