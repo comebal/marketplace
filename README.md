@@ -3,6 +3,9 @@
 Welcome to the GOVTECH MARKETPLACE TEST! This is a next generation SPA codebase that is built based on
 [NextJS Framework](https://nextjs.org/docs/getting-started).
 
+## LIVE DEMO PAGE
+VERCEL LINK: `https://marketplace-vert-phi.vercel.app/`
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
