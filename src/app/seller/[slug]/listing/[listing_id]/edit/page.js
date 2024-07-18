@@ -7,7 +7,6 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <a href={`/seller/${params.slug}`}>Go Back</a>
       <EditProduct userId={params.slug} listing={listing} />
     </>
   )

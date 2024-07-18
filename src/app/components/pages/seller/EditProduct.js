@@ -1,8 +1,9 @@
 'use client'
 
 import styles from './AddProduct.module.css';
+import AddEditListing from '../../shared/AddEditListing';
 
-export default function EditProduct({ listing }){
+export default function EditProduct({ listing, userId }){
 
    const onSubmit = (e) => {
       e.preventDefault();
@@ -32,25 +33,8 @@ export default function EditProduct({ listing }){
 
    return (
       <> 
-         <div>Edit Product</div>
          <div className={styles.addProduct}>
-            <form onSubmit={onSubmit}>
-               <div className={styles.addProductInputs}>
-                  <div><label htmlFor="name">Product Name</label></div>
-                  <input defaultValue={listing?.name} id="name" type="text" name="name" placeholder="Product Name" />
-               </div>
-               <div className={styles.addProductInputs}>
-                  <div><label htmlFor="desc">Description</label></div>
-                  <textarea defaultValue={listing?.description} name="description" id="desc" placeholder="Product Description"></textarea>
-               </div>
-               <div className={styles.addProductInputs}>
-                  <div><label htmlFor="price">Price</label></div>
-                  <input defaultValue={listing?.price} id="price" type="text" name="price" placeholder="Price" />
-               </div>
-               
-               <input defaultValue={listing?.id} type="hidden" name="id" />
-               <button type="submit">Submit</button>
-            </form>
+            <AddEditListing userId={userId} listing={listing} onSubmit={onSubmit} />
          </div>
       </>
    )

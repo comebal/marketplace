@@ -28,24 +28,25 @@ export default function SellerHomepage({ user, listings }){
 
    return (
       <>
-         <div>Hi, {name}</div>
-         <div>
-
-            <div className={styles.productList}>
-               {listings?.map((item) => {
-                  return (
-                     <div key={item?.id}>
-                        <div><a href={`/seller/${id}/listing/${item?.id}`}>{item?.name}</a></div>
-                        <div className={styles.buttons}>
-                           <a href={`/seller/${id}/listing/${item?.id}/edit`}>Edit</a>
-                           <a href='#' onClick={() => confirmClick(item?.id)}>Delete</a>
+         <div className={styles.container}>
+            <div>Hi, {name}</div>
+            <div>
+               <div className={styles.productList}>
+                  {listings?.map((item) => {
+                     return (
+                        <div key={item?.id}>
+                           <div><a className={styles.name} href={`/seller/${id}/listing/${item?.id}`}>{item?.name}</a></div>
+                           <div className={styles.buttons}>
+                              <a href={`/seller/${id}/listing/${item?.id}/edit`}>Edit</a>
+                              <a className={styles.delete} href='#' onClick={() => confirmClick(item?.id)}>Delete</a>
+                           </div>
                         </div>
-                     </div>
-                  )
-               })}
-            </div>
+                     )
+                  })}
+               </div>
 
-            <Link href={`/seller/${id}/add`}>Add Product</Link>
+               <Link className={styles.addBtn} href={`/seller/${id}/add`}>Add Product</Link>
+            </div>
          </div>
       </>
    )

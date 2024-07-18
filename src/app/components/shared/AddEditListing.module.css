@@ -1,0 +1,42 @@
+.back{
+   font-size: 14px;
+   text-decoration: none;
+   color: #4285f4;
+}
+
+.formContainer{
+   margin-top: 15px;
+}
+
+.formContainer table{
+   width: 100%;
+   font-size: 14px;
+}
+
+.formContainer table td{
+   vertical-align: top;
+}
+
+.formContainer table input, .formContainer table textarea{
+   width: 100%;
+}
+
+.formContainer table input{
+   border-radius: 8px;
+   padding: 15px 0px 15px 12px;
+   border: 1px solid #ccc;
+   width: 97%;
+}
+
+.formContainer table textarea{
+   border-radius: 8px;
+   padding: 15px 0px 15px 12px;
+   border: 1px solid #ccc;
+   width: 97%;
+   height: 100px;
+}
+
+.submitContainer{
+   text-align: right;
+   padding-top: 15px;
+}

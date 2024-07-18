@@ -10,6 +10,7 @@ export default function Page({ params }) {
     const listing = await fetch('/api/listing/add', {
       method: 'POST',
       body: JSON.stringify(newObject),
+      cache: 'no-store',
     });
 
     if(listing?.ok){

@@ -1,0 +1,70 @@
+.listing{
+   width: 277px;
+   border: 1px solid #ccc;
+   border-radius: 8px;
+}
+
+.listingPhoto{
+   width: 277px;
+   height: 315px;
+}
+
+.listingPhoto a{
+   display: block;
+}
+
+.attributes{
+   padding: 10px;
+   font-size: 14px;
+}
+
+.attributes > div{
+   margin-bottom: 8px;
+}
+
+.attributes > div:last-child{
+   margin-bottom: 0px;
+}
+
+.name{
+   font-weight: 600;
+}
+
+.name a{
+   text-decoration: none;
+   color: #000;
+}
+
+.price{
+   font-weight: 500;
+}
+
+.attributes button{
+   background: #F7B538;
+   color: #000;
+   border: 0;
+   padding: 10px 15px;
+   border-radius: 8px;
+   cursor: pointer;
+}
+
+.priceContainer{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.attributes button.sold{
+   background: #5cb85c;
+   color: #FFF;
+   cursor: initial;
+}
+
+.listingWidth{
+   width: 100%;
+}
+
+.listingDetailPhoto{
+   width: 100%;
+   height: auto;
+}

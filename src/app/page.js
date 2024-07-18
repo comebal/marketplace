@@ -1,26 +1,70 @@
 'use client'
 
+import { useState } from "react";
+import ListingItem from "./components/shared/ListingItem";
+import Image from "next/image";
 import styles from "./page.module.css";
-import { useRouter } from 'next/navigation'
+import cx from "classnames";
 
 export default function Home() {
-  const router = useRouter()
+  const [listings, setListings] = useState([]);
+  const [loading, setIsLoading] = useState(false);
+  const [fromSearch, setFromSearch] = useState(false);
 
-  const onSubmit = (e) => {
-
-    const formData = new FormData(e.target)
-    const search = formData.get('search');
-    router.push(`/search?q=${search}`);
+  const onSubmit = async (e) => {
 
     e.preventDefault(); 
+
+    setIsLoading(true);
+    
+    const formData = new FormData(e.target)
+    const search = formData.get('search');
+
+    const findListings = await fetch('/api/listing/search', {
+      method: 'POST',
+      body: JSON.stringify({ search }),
+    });
+
+    setIsLoading(false);
+    setFromSearch(true);
+
+    if(findListings?.ok){
+      const data = await findListings.json();
+      setListings(data?.listings?.listings)
+    }else{
+      // ADD ERROR MESSAGE
+    }    
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <form onSubmit={onSubmit}>
-        <input id="name" type="text" name="search" placeholder="Search" />
-        <button type="submit">Search</button>
+        <div className={styles.form}>
+          <input id="name" type="text" name="search" placeholder="Search" className={styles.searchInput} />
+          <button type="submit" className={cx(styles.searchBtn, { [styles.loading]: loading })}>
+            {loading && <Image src='/assets/loading-spinner.gif' width={20} height={20} />}
+            Search
+          </button>
+        </div>
       </form>
+
+      <div className={styles.searchResults}>
+        
+        {fromSearch && listings.length === 0 && (
+          <div className={styles.empty}>Sorry, we couldn't find any results matching your search.</div>
+        )}
+
+        {listings.length > 0 && (
+          <>
+            <div className={styles.searchLabel}>Search Results:</div>
+            <div className={styles.searchContainer}>
+              {listings.length > 0 && (
+                listings.map((listing) => <ListingItem listing={listing} />)
+              )}
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }

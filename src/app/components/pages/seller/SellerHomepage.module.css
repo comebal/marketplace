@@ -1,7 +1,26 @@
+.container{
+   width: 600px;
+   margin: 0 auto;
+   margin-top: 40px;
+}
+
 .productList{
-   width: 300px;
    margin-top: 20px;
    margin-bottom: 20px;
+   font-size: 14px;
+}
+
+.productList a{
+   text-decoration: none;
+   color: #4285f4;
+}
+
+.productList a.delete{
+   color: #FF8080;
+}
+
+.productList a.name{
+   text-decoration: underline;
 }
 
 .productList > div{
@@ -17,4 +36,14 @@
 
 .productList > div .buttons a:nth-child(1){
    margin-right: 10px;
+}
+
+.addBtn{
+   color: #FFF;
+   background: #4285f4;
+   padding: 8px;
+   border-radius: 8px;
+   text-decoration: none;
+   font-size: 14px;
+   display: inline-block;
 }

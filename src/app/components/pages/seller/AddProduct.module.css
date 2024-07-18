@@ -1,5 +1,7 @@
 .addProduct{
-   width: 300px;
+   width: 600px;
+   margin: 0 auto;
+   margin-top: 45px;
 }
 
 .addProduct div.addProductInputs{
@@ -9,4 +11,14 @@
 
 .addProduct div.addProductInputs div{
    width: 200px;
+}
+
+.addProduct button{
+   background: #F7B538;
+   color: #FFF;
+   border: 0;
+   padding: 10px 15px;
+   border-radius: 8px;
+   cursor: pointer;
+   font-weight: 500;
 }

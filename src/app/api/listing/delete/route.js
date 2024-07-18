@@ -7,7 +7,6 @@ export async function POST(req) {
    const data = await req.json();
 
    const listing = deleteListings(data);
-   console.log(listing);
 
    return NextResponse.json({ message: "Success" }, { status: 200 });
  }
