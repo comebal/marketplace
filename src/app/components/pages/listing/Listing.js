@@ -30,7 +30,7 @@ export default function Listing({ listing }){
        }
 
       findBids();
-   }, []);
+   }, [listing]);
 
    const bidListing = async (e) => {
       e.preventDefault();
@@ -81,7 +81,7 @@ export default function Listing({ listing }){
                   <div className={styles.bidInputs}>
                      <input type='text' name='price' placeholder='Bid Price' />
                      <button type="submit" disabled={isBidLoading}>
-                        {isBidLoading && <span><Image src='/assets/loading-spinner.gif' width={12} height={12} /></span>}
+                        {isBidLoading && <span><Image alt='listing photo' src='/assets/loading-spinner.gif' width={12} height={12} /></span>}
                         <span>Bid</span>
                      </button>
                   </div>
@@ -89,8 +89,8 @@ export default function Listing({ listing }){
                {bids && bids.length > 0 && (
                   <div className={styles.previousBids}>
                      <div className={styles.title}>Your previous Bids:</div>
-                     {bids.map((bid) => (
-                        <div>Price: {formatter.format(bid?.price)}</div>
+                     {bids.map((bid, index) => (
+                        <div key={index}>Price: {formatter.format(bid?.price)}</div>
                      ))}
                   </div>
                )}

@@ -57,7 +57,7 @@ export default function Home() {
         <div className={styles.form}>
           <input id="name" type="text" name="search" placeholder="Search" className={styles.searchInput} />
           <button type="submit" className={cx(styles.searchBtn, { [styles.loading]: loading })}>
-            {loading && <Image src='/assets/loading-spinner.gif' width={20} height={20} />}
+            {loading && <Image alt='spinner' src='/assets/loading-spinner.gif' width={20} height={20} />}
             Search
           </button>
         </div>

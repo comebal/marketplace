@@ -39,7 +39,7 @@ export default function ListingItem(props){
       <div className={cx(styles.listing, { [styles.listingWidth]: isListingDetailPage})}>
          <div className={cx(styles.listingPhoto, { [styles.listingDetailPhoto]: isListingDetailPage})}>
             <Link href={`/listing/${listing?.id}`}>
-               <Image src='/assets/no-photo.png' width={0} height={0} sizes="100vw" style={{ width: '99%', height: 'auto' }} />
+               <Image alt='no photo' src='/assets/no-photo.png' width={0} height={0} sizes="100vw" style={{ width: '99%', height: 'auto' }} />
             </Link>
          </div>
          <div className={styles.attributes}>
@@ -50,7 +50,7 @@ export default function ListingItem(props){
             <div className={styles.priceContainer}>
                <div className={styles.price}>{formatter.format(listing?.price)}</div>
                <button disabled={isSold || isBuying || listingStatusSold} className={cx({ [styles.sold]: isSold || listingStatusSold })} onClick={() => buyListing(listing?.id)}>
-                  {isBuying && <Image src='/assets/loading-spinner.gif' width={12} height={12} />}
+                  {isBuying && <Image alt='spinner' src='/assets/loading-spinner.gif' width={12} height={12} />}
                   {!isBuying && (
                      isSold || listingStatusSold ? 'Sold' : 'Buy'
                   )}
