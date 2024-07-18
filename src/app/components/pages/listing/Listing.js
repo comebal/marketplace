@@ -1,16 +1,36 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ListingItem from "../../shared/ListingItem";
 import Image from "next/image";
 import styles from './Listing.module.css';
 import Link from "next/link";
-import { getCookie, isInt } from "../../../../../lib/utils";
+import { getCookie, isInt, formatter } from "../../../../../lib/utils";
 
 export default function Listing({ listing }){
 
    const [isBidLoading, setIsBidLoading] = useState(false);
    const [isBidSuccessful, setIsBidSuccessful] = useState(false);
+   const [bids, setBids] = useState([]);
+
+   useEffect(() => {
+      const user = JSON.parse(getCookie('user'));
+
+      const findBids = async () => {
+         const response = await fetch('/api/listing/viewBids', {
+            method: 'POST',
+            body: JSON.stringify({ id: listing?.id, userId: user?.userId }),
+         });
+         if(response?.ok){
+           const data = await response.json();
+           setBids(data?.bids);
+         }else{
+            setBids([]);
+         }
+       }
+
+      findBids();
+   }, []);
 
    const bidListing = async (e) => {
       e.preventDefault();
@@ -66,6 +86,14 @@ export default function Listing({ listing }){
                      </button>
                   </div>
                </form>
+               {bids && bids.length > 0 && (
+                  <div className={styles.previousBids}>
+                     <div className={styles.title}>Your previous Bids:</div>
+                     {bids.map((bid) => (
+                        <div>Price: {formatter.format(bid?.price)}</div>
+                     ))}
+                  </div>
+               )}
                {isBidSuccessful && (
                   <div className={styles.bidSuccess}>Your bid has been successfully placed!</div>
                )}

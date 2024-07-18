@@ -71,6 +71,19 @@
    margin-left: 10px;
 }
 
+.previousBids{
+   margin-top: 10px;
+   font-size: 14px;
+   border: 1px solid #ccc;
+   padding: 10px;
+   border-radius: 8px;
+}
+
+.previousBids .title{
+   font-weight: 500;
+   margin-bottom: 10px;
+}
+
 @media (min-width: 768px) {
    .container{
       width: 400px;

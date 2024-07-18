@@ -150,6 +150,23 @@ export const findBids = async (id) => {
    };
 };
 
+export const findListingUserBids = async (id, userId) => {
+
+   const bids = await prisma.bids.findMany({
+      where: {
+        listing_id: Number(id),
+        user_id: userId,
+        status: 'pending'
+      }
+   });
+
+   await prisma.$disconnect();
+
+   return {
+      bids,
+   };
+};
+
 export const enquireListing = async ({ id, userId }) => {
 
    const listings = await prisma.listing.update({
