@@ -62,8 +62,8 @@ export default function Listing({ listing, slug, bids }){
             <div className={styles.bids}>
                <div className={styles.bidLabel}>Active Bids:</div>
                <ul className={styles.bidList}>
-                  {bids.map((bid) => (
-                     <li><label><input onClick={() => setPriceBid(bid?.id)} name='price' type='radio' /> {formatter.format(bid?.price)}</label></li>
+                  {bids.map((bid, index) => (
+                     <li key={index}><label><input onClick={() => setPriceBid(bid?.id)} name='price' type='radio' /> {formatter.format(bid?.price)}</label></li>
                   ))}
                </ul>
                <button className={styles.acceptBid} onClick={() => acceptBid()}>Accept Bid</button>
