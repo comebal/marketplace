@@ -1,0 +1,47 @@
+.container{
+   width: 400px;
+   margin: 0 auto;
+   margin-top: 45px;
+   display: flex;
+   justify-content: space-between;
+   align-items: baseline;
+   font-size: 14px;
+}
+
+.title{
+   font-size: 16px;
+   font-weight: 500;
+   text-decoration: underline;
+}
+
+.entry{
+   border: 1px solid #ccc;
+   padding: 10px;
+   border-radius: 8px;
+   width: 42%;
+}
+
+.entryContent{
+   margin-top: 10px;
+}
+
+.entryContent div{
+   margin-bottom: 5px;
+}
+
+.entryContent a{
+   text-decoration: none;
+   color: #000;
+}
+
+.entryContent a:hover{
+   text-decoration: underline;
+}
+
+.buyer{
+   cursor: pointer;
+}
+
+.buyer:hover{
+   text-decoration: underline;
+}

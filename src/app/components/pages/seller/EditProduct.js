@@ -1,9 +1,12 @@
 'use client'
 
+import { useState } from 'react';
 import styles from './AddProduct.module.css';
 import AddEditListing from '../../shared/AddEditListing';
+import { isInt } from '../../../../../lib/utils';
 
 export default function EditProduct({ listing, userId }){
+   const [successEdit, setSuccessEdit] = useState(false);
 
    const onSubmit = (e) => {
       e.preventDefault();
@@ -14,7 +17,17 @@ export default function EditProduct({ listing, userId }){
       const price = formData.get('price');
       const id = listing?.id;
 
-      editListing({ id, name, description, price });
+      if(name === ''){
+         alert('Enter product name');
+      }else if(description === ''){
+         alert('Enter product description');
+      }else if(price === ''){
+         alert('Enter product price');
+      }else if(!isInt(price)){
+         alert('Invalid product price');
+      }else{
+         editListing({ id, name, description, price });
+      }
    }
 
    const editListing = async (data) => {
@@ -24,10 +37,10 @@ export default function EditProduct({ listing, userId }){
       });
   
       if(listing?.ok){
-        // ADD SUCCESS MESSAGE
-        alert('Success Edit')
+         setSuccessEdit(true);
       }else{
-        // ADD ERROR MESSAGE
+         setSuccessEdit(false);
+         alert('Error updating listing')
       }
    }
 
@@ -35,6 +48,9 @@ export default function EditProduct({ listing, userId }){
       <> 
          <div className={styles.addProduct}>
             <AddEditListing userId={userId} listing={listing} onSubmit={onSubmit} />
+            {successEdit && (
+               <div className={styles.success}>Success! Your edits have been applied successfully.</div>
+            )}
          </div>
       </>
    )

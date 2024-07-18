@@ -1,5 +1,7 @@
+import Switch from "../components/pages/switch/Switch"
+
 export default async function Page(){
    return (
-      <div>switch</div>
+      <Switch />
    )
 }

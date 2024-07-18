@@ -1,11 +1,7 @@
 import styles from './Purchase.module.css';
+import { formatter } from '../../../../../lib/utils';
 
 export default function Purchases({ listings }){
-
-   const formatter = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-   });
 
    return (
       <div className={styles.container}>

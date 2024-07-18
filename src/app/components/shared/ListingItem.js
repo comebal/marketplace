@@ -5,11 +5,7 @@ import styles from './ListingItem.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import cx from 'classnames';
-
-const formatter = new Intl.NumberFormat('en-US', {
-   style: 'currency',
-   currency: 'USD',
-});
+import { getCookie, formatter } from '../../../../lib/utils';
 
 export default function ListingItem(props){
    const { listing, isListingDetailPage } = props;
@@ -21,10 +17,12 @@ export default function ListingItem(props){
 
    const buyListing = async (id) => {
       setIsBuying(true);
+
+      const user = JSON.parse(getCookie('user'));
       
       const listing = await fetch('/api/listing/enquire', {
          method: 'POST',
-         body: JSON.stringify({ id, userId: 2 }),
+         body: JSON.stringify({ id, userId: user?.userId }),
        });
 
        setIsBuying(false);

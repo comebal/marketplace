@@ -1,15 +1,26 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ListingItem from "./components/shared/ListingItem";
 import Image from "next/image";
 import styles from "./page.module.css";
 import cx from "classnames";
+import { getCookie, setCookie } from "../../lib/utils";
 
 export default function Home() {
   const [listings, setListings] = useState([]);
   const [loading, setIsLoading] = useState(false);
   const [fromSearch, setFromSearch] = useState(false);
+  const [userCookie, setUserCookie] = useState();
+
+  useEffect(() => {
+    if(getCookie('user') === null){
+
+      //set default
+      setCookie('user', JSON.stringify({userId: 6, name: 'Bernadette'}), 7);
+    }
+    setUserCookie(JSON.parse(getCookie('user')));
+  }, []);
 
   const onSubmit = async (e) => {
 
@@ -38,6 +49,10 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.userContent}>
+        <div>{userCookie?.name ? `Hi ${userCookie?.name}` : ''}</div>
+        <div className={styles.userContentLinks}><a href='/purchases'>My Purchases</a> <a href="/switch">Switch user</a></div>
+      </div>
       <form onSubmit={onSubmit}>
         <div className={styles.form}>
           <input id="name" type="text" name="search" placeholder="Search" className={styles.searchInput} />

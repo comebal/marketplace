@@ -1,15 +1,12 @@
 'use client'
 import { useState } from "react"
 import styles from './Listing.module.css';
+import { formatter } from '../../../../../lib/utils';
 
 export default function Listing({ listing, slug, bids }){
 
    const [priceBid, setPriceBid] = useState('');
-
-   const formatter = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-   });
+   const [bidSuccess, setBidSuccess] = useState(false);
 
    const acceptBid = async () => {
 
@@ -24,10 +21,10 @@ export default function Listing({ listing, slug, bids }){
          });
       
          if(listing?.ok){
-            // ADD SUCCESS MESSAGE
-            alert('Success Bid')
+            setBidSuccess(true);
          }else{
-            // ADD ERROR MESSAGE
+            setBidSuccess(false);
+            alert('Error bidding.');
          }
       }
    }
@@ -57,7 +54,11 @@ export default function Listing({ listing, slug, bids }){
             </table>   
          </div>
 
-         {bids && bids.length > 0 && (
+         {bidSuccess && (
+            <div className={styles.successBid}>Your bid has been successful.</div>
+         )}
+
+         {!bidSuccess && bids && bids.length > 0 && (
             <div className={styles.bids}>
                <div className={styles.bidLabel}>Active Bids:</div>
                <ul className={styles.bidList}>

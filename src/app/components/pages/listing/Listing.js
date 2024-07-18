@@ -5,21 +5,20 @@ import ListingItem from "../../shared/ListingItem";
 import Image from "next/image";
 import styles from './Listing.module.css';
 import Link from "next/link";
+import { getCookie, isInt } from "../../../../../lib/utils";
 
 export default function Listing({ listing }){
 
    const [isBidLoading, setIsBidLoading] = useState(false);
    const [isBidSuccessful, setIsBidSuccessful] = useState(false);
 
-   const isInt = (value) => {
-      return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value))
-   }
-
    const bidListing = async (e) => {
       e.preventDefault();
 
       const formData = new FormData(e.target)
       const price = formData.get('price').trim();
+
+      const user = JSON.parse(getCookie('user'));
 
       if(!isInt(price) || price === ''){
          alert('Invalid price')
@@ -28,7 +27,7 @@ export default function Listing({ listing }){
 
          const bid = await fetch('/api/listing/bid', {
             method: 'POST',
-            body: JSON.stringify({ userId: 2, price, listingId: listing?.id }),
+            body: JSON.stringify({ userId: user?.userId, price, listingId: listing?.id }),
          });
 
          setIsBidLoading(false);
@@ -48,7 +47,7 @@ export default function Listing({ listing }){
             <Link href='/'>Back</Link>
             <div className={styles.userOptionsRight}>
                <Link href='/purchases'>My Purchases</Link>
-               <Link href='/'>Switch user</Link>
+               <Link href='/switch'>Switch user</Link>
             </div>
          </div>
          <ListingItem
