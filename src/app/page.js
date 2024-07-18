@@ -66,7 +66,7 @@ export default function Home() {
       <div className={styles.searchResults}>
         
         {fromSearch && listings.length === 0 && (
-          <div className={styles.empty}>Sorry, we couldn't find any results matching your search.</div>
+          <div className={styles.empty}>Sorry, we couldn&apos;t find any results matching your search.</div>
         )}
 
         {listings.length > 0 && (
@@ -74,7 +74,7 @@ export default function Home() {
             <div className={styles.searchLabel}>Search Results:</div>
             <div className={styles.searchContainer}>
               {listings.length > 0 && (
-                listings.map((listing) => <ListingItem listing={listing} />)
+                listings.map((listing, index) => <ListingItem key={index} listing={listing} />)
               )}
             </div>
           </>

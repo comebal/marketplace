@@ -17,8 +17,8 @@ export default function Purchases({ listings }){
                            <th>Price</th>
                            <th>View</th>
                         </tr>
-                        {listings && listings.map((listing) => (
-                           <tr>
+                        {listings && listings.map((listing, index) => (
+                           <tr key={index}>
                               <td>{listing.name}</td>
                               <td>{listing.purchase_type}</td>
                               <td>{formatter.format(listing.price)}</td>
