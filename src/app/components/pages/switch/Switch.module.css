@@ -1,10 +1,7 @@
 .container{
-   width: 400px;
+   width: 100%;
    margin: 0 auto;
    margin-top: 45px;
-   display: flex;
-   justify-content: space-between;
-   align-items: baseline;
    font-size: 14px;
 }
 
@@ -18,7 +15,8 @@
    border: 1px solid #ccc;
    padding: 10px;
    border-radius: 8px;
-   width: 42%;
+   width: 92%;
+   margin-bottom: 25px;
 }
 
 .entryContent{
@@ -44,4 +42,18 @@
 
 .buyer:hover{
    text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+   .container{
+      width: 400px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+   }
+
+   .entry{
+      width: 42%;
+      margin-bottom: 0px;
+   }
 }

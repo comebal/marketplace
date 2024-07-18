@@ -1,5 +1,5 @@
 .addProduct{
-   width: 600px;
+   width: 100%;
    margin: 0 auto;
    margin-top: 45px;
 }
@@ -31,4 +31,10 @@
    font-size: 14px;
    text-align: center;
    margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+   .container{
+      width: 600px;
+   }
 }

@@ -1,5 +1,5 @@
 .container{
-   width: 400px;
+   width: 100%;
    margin: 0 auto;
    margin-top: 45px;
 }
@@ -69,4 +69,10 @@
 
 .userOptionsRight a:last-child{
    margin-left: 10px;
+}
+
+@media (min-width: 768px) {
+   .container{
+      width: 400px;
+   }
 }
